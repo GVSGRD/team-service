@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/techstack")
-@CrossOrigin("http://localhost:3000")
 public class TechStackController {
 
     @Autowired

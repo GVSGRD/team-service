@@ -45,13 +45,42 @@ public class TeamUserController {
         return new ResponseEntity<>(teamUserId, HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("team/{teamId}")
-    public ResponseEntity<List<TeamUser>> getSkillsByUserId(@PathVariable("teamId") Long teamId){
+    @GetMapping("user/{userId}")
+    public ResponseEntity<List<TeamUser>> findByUserId(@PathVariable("userId") Long userId){
 
-        List<TeamUser> resp = teamUserService.getUsersByTeamId(teamId);
+        List<TeamUser> resp = teamUserService.findByUserId(userId);
         return new ResponseEntity<List<TeamUser>>(resp, HttpStatus.OK);
 
     }
+
+    @GetMapping("team/{teamId}")
+    public ResponseEntity<List<TeamUser>> findByTeamId(@PathVariable("teamId") Long teamId){
+
+        List<TeamUser> resp = teamUserService.findByTeamId(teamId);
+        return new ResponseEntity<List<TeamUser>>(resp, HttpStatus.OK);
+
+    }
+
+    @GetMapping("request/{userId}")
+    public ResponseEntity<List<TeamUser>> findRequestsByUserID(@PathVariable("userId") Long userId){
+
+        List<TeamUser> resp = teamUserService.findRequestsByUserID(userId);
+        return new ResponseEntity<List<TeamUser>>(resp, HttpStatus.OK);
+
+    }
+
+    @PutMapping("/accept/{requestId}")
+    public ResponseEntity<Integer> acceptTeamUser(@PathVariable("requestId") Long requestId) {
+        int resp = teamUserService.acceptTeamUser(requestId);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
+    }
+
+    @PutMapping("/reject/{requestId}")
+    public ResponseEntity<Integer> rejectTeamUser(@PathVariable("requestId") Long requestId) {
+        int resp = teamUserService.rejectTeamUser(requestId);
+        return new ResponseEntity<>(resp, HttpStatus.OK);
+    }   
+
 
 }
 

@@ -4,7 +4,7 @@ import com.example.teamservice.entity.TeamUser;
 import com.example.teamservice.repository.TeamUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
@@ -33,8 +33,28 @@ public class TeamUserService implements com.example.teamservice.service.interfac
     }
 
     @Override
-    public List<TeamUser> getUsersByTeamId(Long teamId) {
-        return teamUserRepository.findByTeamId(teamId);
+    public List<TeamUser> findByUserId(Long userId) {
+        return teamUserRepository.findByUserIdAndStatus(userId);
+    }
+
+    @Override
+    public List<TeamUser> findByTeamId(Long teamId) {
+        return teamUserRepository.findByTeamIdAndStatus(teamId);
+    }
+
+    @Override
+    public List<TeamUser> findRequestsByUserID(Long userId) {
+        return teamUserRepository.findRequestsByUserID(userId);
+    }
+
+    @Transactional
+    public int acceptTeamUser(Long requestId) {
+        return teamUserRepository.acceptTeamUser(requestId);
+    }
+
+    @Transactional
+    public int rejectTeamUser(Long requestId) {
+        return teamUserRepository.rejectTeamUser(requestId);
     }
 }
 

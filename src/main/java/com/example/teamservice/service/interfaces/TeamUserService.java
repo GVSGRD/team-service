@@ -9,7 +9,11 @@ public interface TeamUserService {
     TeamUser findTeamUserById(Long teamUserId);
     List<TeamUser> findAllTeamUsers();
     TeamUser updateTeamUser(TeamUser teamUser);
+    int acceptTeamUser(Long requestId);
+    int rejectTeamUser(Long requestId);
     void deleteTeamUser(Long teamUserId);
-    List<TeamUser> getUsersByTeamId(Long teamId);
+    List<TeamUser> findByUserId(Long userId);
+    List<TeamUser> findByTeamId(Long teamId);
+    List<TeamUser> findRequestsByUserID(Long userId);
 }
 

@@ -17,6 +17,9 @@ public interface TeamUserRepository extends JpaRepository<TeamUser, Long> {
     @Query(value = "SELECT * FROM team_user WHERE team_id = :teamId AND status = 'ACCEPTED'", nativeQuery = true)
     List<TeamUser> findByTeamIdAndStatus(Long teamId);
 
+    @Query(value = "SELECT * FROM team_user WHERE team_id = :teamId AND user_id = :userId", nativeQuery = true)
+    TeamUser findByUserIdAndTeamId(Long userId, Long teamId);
+
     @Query(value = "SELECT * FROM team_user WHERE team_id IN (SELECT team_id FROM team_user WHERE user_id = :userId AND status = 'ACCEPTED') AND status = 'PENDING'", nativeQuery = true)
     List<TeamUser> findRequestsByUserID(@Param("userId") Long userId);
 

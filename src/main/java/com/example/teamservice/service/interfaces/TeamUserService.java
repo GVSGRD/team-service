@@ -15,5 +15,6 @@ public interface TeamUserService {
     List<TeamUser> findByUserId(Long userId);
     List<TeamUser> findByTeamId(Long teamId);
     List<TeamUser> findRequestsByUserID(Long userId);
+    TeamUser findByUserIdAndTeamId(Long userId, Long teamId);
 }
 

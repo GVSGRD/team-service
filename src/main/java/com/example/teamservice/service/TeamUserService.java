@@ -47,6 +47,11 @@ public class TeamUserService implements com.example.teamservice.service.interfac
         return teamUserRepository.findRequestsByUserID(userId);
     }
 
+    @Override
+    public TeamUser findByUserIdAndTeamId(Long userId, Long teamId){
+        return teamUserRepository.findByUserIdAndTeamId(userId, teamId);
+    }
+
     @Transactional
     public int acceptTeamUser(Long requestId) {
         return teamUserRepository.acceptTeamUser(requestId);

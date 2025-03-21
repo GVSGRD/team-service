@@ -61,6 +61,14 @@ public class TeamUserController {
 
     }
 
+    @GetMapping("team/{teamId}/user/{userId}")
+    public ResponseEntity<TeamUser> findByUserIdAndTeamId(@PathVariable("userId") Long userId, @PathVariable("teamId") Long teamId){
+
+        TeamUser resp = teamUserService.findByUserIdAndTeamId(userId, teamId);
+        return new ResponseEntity<TeamUser>(resp, HttpStatus.OK);
+
+    }
+
     @GetMapping("request/{userId}")
     public ResponseEntity<List<TeamUser>> findRequestsByUserID(@PathVariable("userId") Long userId){
 
